@@ -45,5 +45,12 @@ jobs:
 
     - name: run blue-green deployment
       run: |
-        chmod 777 deploy.sh
-        bash deploy.sh
+        # make changes in the application to create a new feature and then build a new image
+        docker build -t ashok0709/app:2.0 -f dockerfile-app .
+        docker build -t ashok0709/db:2.0 -f dockerfile-db .
+        docker push ashok0709/app:2.0
+        docker push ashok0709/db:2.0   
+        sed -i 's/app:1.0/app:2.0/g' app-deployment.yml
+        sed -i 's/db:1.0/db:2.0/g' db-deployment.yml
+        kubectl apply -f app-deployment.yml
+        kubectl apply -f db-deployment.yml                             
