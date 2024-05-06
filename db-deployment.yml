@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: db-deployment
+  serviceName: db-deployment
+  template:
+    metadata:
+      labels:
+        app: db-deployment
+    spec:
+      containers:
+      - name: db-deployment
+        image: ashok0709/db:1.0
+        ports:
+        - containerPort: 3306
+
