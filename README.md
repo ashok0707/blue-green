@@ -2,7 +2,7 @@ Create a Sample Source Code For an Application and workflow for GithubAction
 
 Create a Dockerfile to build an image for the application
 
-Push the image to the ACR
+Push the image to the docker hub
 
 Create manifest files for the application
 
